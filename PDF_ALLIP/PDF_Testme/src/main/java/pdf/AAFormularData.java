@@ -1598,16 +1598,22 @@ public class AAFormularData extends FormularData implements PDFConstants
             this.checkFehlers.add("Auftragsdatum in Zukunft");
             result = false;
         }
-        if (this.customerName == null || this.customerName.length() == 0|| this.customerNumber == "Keine") {//Add
+        if (this.customerName == null || this.customerName.length() == 0) {
             this.checkFehlers.add("Kundenname leer");
             result = false;
         }
-        if (this.customerNumber == null || this.customerNumber.length() <= 3) {
+        if (this.customerNumber == null || this.customerNumber.length() <= 3|| this.customerNumber == "Keine") {//Add
             this.checkFehlers.add("Kundennummer leer oder unm\u00f6glich");
+            result = false;
+        }else if (ValidationTools.isNumeric(this.customerNumber)== false){
+            this.checkFehlers.add("Kundennummer Fehler");
             result = false;
         }
         if (this.account == null || this.account.length() == 0) {
             this.checkFehlers.add("Rechnungskonto leer");
+            result = false;
+        }else if (ValidationTools.isNumeric(this.account)== false){
+            this.checkFehlers.add("Rechnungskonto Fehler");
             result = false;
         }
         if ((this.name == null || this.name.length() == 0) && (this.surname == null || this.surname.length() == 0)) {
@@ -1625,9 +1631,20 @@ public class AAFormularData extends FormularData implements PDFConstants
         if (this.zipCode == null || this.zipCode.length() == 0) {
             this.checkFehlers.add("Postleitzahl leer");
             result = false;
+        }else if (ValidationTools.isNumeric(zipCode)== false){
+            this.checkFehlers.add("Postleitzahl Fehler");
+            result = false;
         }
         if (this.city == null || this.city.length() == 0) {
             this.checkFehlers.add("Stadt leer");
+            result = false;
+        }else if (!(ValidationTools.containsDigit(city))== false){
+            this.checkFehlers.add("Stadt Fehler");
+            result = false;
+        }
+        //Lagebezeichnung
+        if ((this.taeBuilding == null || this.taeBuilding.length() == 0) && (this.taeFloor == null || this.taeFloor.length() == 0)&& (this.taeRoom == null || this.taeRoom.length() == 0)) {
+            this.checkFehlers.add("Lagebezeichnung Information leer");
             result = false;
         }
         if ((this.tcName == null || this.tcName.length() == 0) && (this.tcSurname == null || this.tcSurname.length() == 0)) {
@@ -1653,19 +1670,56 @@ public class AAFormularData extends FormularData implements PDFConstants
         if (this.locZipCode == null || this.locZipCode.length() == 0) {
             this.checkFehlers.add("Anschluss-PLZ leer");
             result = false;
+        }else if (ValidationTools.isNumeric(locZipCode)== false){
+            this.checkFehlers.add("Anschluss-PLZ Fehler");
+            result = false;
         }
         if (this.locCity == null || this.locCity.length() == 0) {
             this.checkFehlers.add("Anschluss-Stadt der  leer");
+            result = false;
+        }else if (!(ValidationTools.containsDigit(locCity))== false){
+            this.checkFehlers.add("Anschluss-Stadt Fehler");
             result = false;
         }
         if (this.prefix == null || this.prefix.length() == 0) {
             this.checkFehlers.add("Vorwahl unbekannt leer");
             result = false;
+        }else if (ValidationTools.isNumeric(prefix)== false){
+            this.checkFehlers.add("Vorwahl Fehler");
+            result = false;
         }
         if (this.number == null || this.number.length() == 0) {
             this.checkFehlers.add("Telfonnummer leer");
             result = false;
+        }else if (ValidationTools.isNumeric(number)== false){
+            this.checkFehlers.add("Telfonnummer Fehler");
+            result = false;
         }
+        //Durchwahl
+        if (this.extensionStart == null || this.extensionStart.length() == 0) {
+            this.checkFehlers.add("Anfangsdurchwahlnummer leer");
+            result = false;
+        }else if (ValidationTools.isNumeric(extensionStart)== false){
+            this.checkFehlers.add("Anfangsdurchwahlnummer Fehler");
+            result = false;
+        }
+        if (this.extensionEnde == null || this.extensionEnde.length() == 0) {
+            this.checkFehlers.add("Endsdurchwahlnummer leer");
+            result = false;
+        }else if (ValidationTools.isNumeric(extensionEnde)== false){
+            this.checkFehlers.add("Endsdurchwahlnummer Fehler");
+            result = false;
+        }
+         //name
+        if ((this.vtcName == null || this.vtcName.length() == 0) && (this.vtcSurname == null || this.vtcSurname.length() == 0)) {
+            this.checkFehlers.add("Ansprechpartner vor Ort Name und Vorname leer");
+            result = false;
+        }
+        if ((this.vtcPhone == null || this.vtcPhone.length() == 0) && (this.vtcMobile == null || this.vtcMobile.length() == 0) && (this.vtcFax == null || this.vtcFax.length() == 0) && (this.vtcEMail == null || this.vtcEMail.length() == 0)) {
+            this.checkFehlers.add("Ansprechpartnerkontakte vor Ort sind leer");
+            result = false;
+        }
+
         if (!this.oldRate && (this.rate == null || this.rate.length() == 0)) {
             this.checkFehlers.add("Tarif nicht bekannt");
             result = false;
@@ -1713,6 +1767,9 @@ public class AAFormularData extends FormularData implements PDFConstants
         }
         if (this.voNummer == null || this.voNummer.length() == 0) {
             this.checkFehlers.add("voNummer leer");
+            result = false;
+        }else if (ValidationTools.isNumeric(this.voNummer)== false){
+            this.checkFehlers.add("voNummer Fehler");
             result = false;
         }
         /*if (this.voEMail == null || this.voEMail.length() == 0) {

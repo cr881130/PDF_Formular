@@ -237,24 +237,24 @@ public class PDFExctractor implements PDFConstants
         kfd.setInt2Flat(getBooleanFromField(p.getProperty("2172.40")));
         kfd.setInt3Flat(getBooleanFromField(p.getProperty("2172.41")));
         final String count = p.getProperty("2172.42");
-        int countOfLines = 2;
+        int countOfLines = 4;
         if (count != null) {
             final String s2;
             switch (s2 = count) {
                 case "1": {
-                    countOfLines = 2;
-                    break;
-                }
-                case "2": {
                     countOfLines = 4;
                     break;
                 }
+                case "2": {
+                    countOfLines = 2;
+                    break;
+                }
                 case "3": {
-                    countOfLines = 6;
+                    countOfLines = 8;
                     break;
                 }
                 case "4": {
-                    countOfLines = 8;
+                    countOfLines = 6;
                     break;
                 }
                 default:
