@@ -1643,7 +1643,7 @@ public class AAFormularData extends FormularData implements PDFConstants
             result = false;
         }
         //Lagebezeichnung
-        if ((this.taeBuilding == null || this.taeBuilding.length() == 0) && (this.taeFloor == null || this.taeFloor.length() == 0)&& (this.taeRoom == null || this.taeRoom.length() == 0)) {
+        if ((this.taeBuilding == null || this.taeBuilding.length() == 0) && (this.taeFloor == null || this.taeFloor.length() == 0)&& (this.taeRoom == null || this.taeRoom.length() == 0)&& (this.taeExtended == null || this.taeExtended.length() == 0)) {
             this.checkFehlers.add("Lagebezeichnung Information leer");
             result = false;
         }
@@ -1765,6 +1765,129 @@ public class AAFormularData extends FormularData implements PDFConstants
                     break;
             }
         }
+        //Sprachkanäle
+        if (this.countOfLines==0 ) {
+            this.checkFehlers.add("Kein ausgewählter Sprachkanal");
+            result = false;
+        }
+        //Rufnummernschema
+        boolean rowGruppe1, rowGruppe2, rowGruppe3, rowGruppe4;
+        boolean GleichenummerGruppe1, GleichenummerGruppe2, GleichenummerGruppe3, GleichenummerGruppe4;
+        boolean pilot1=false, pilot2=false, pilot3=false,pilot4=false;
+        boolean Gruppe1=false,Gruppe2=false,Gruppe3=false,Gruppe4=false;
+
+        if (this.irregular==false){//######################################################################################################
+            if (ValidationTools.isNumeric(this.pilotrufnummer1)){
+                pilot1=true;
+            }else if (ValidationTools.isNumeric(this.pilotrufnummer2)){
+                pilot2=true;
+            }else if (ValidationTools.isNumeric(this.pilotrufnummer1)){
+                pilot3=true;
+            }else if (ValidationTools.isNumeric(this.pilotrufnummer1)){
+                pilot4=true;
+            }else {
+                pilot1=false;pilot2=false;pilot3=false;pilot4=false;
+            }
+
+            if (this.pilotrufnummer1.equals(this.number)){
+                GleichenummerGruppe1=true;
+                this.aapAdministrationsPhoneNumber="v1";
+            }else {
+                GleichenummerGruppe1=false;
+                this.aapAdministrationsPhoneNumber="f1";
+            }
+            if (this.pilotrufnummer2.equals(this.number)){
+                GleichenummerGruppe2=true;
+                this.aapAdministrationsMobile="v2";
+            }else {
+                GleichenummerGruppe2=false;
+                this.aapAdministrationsMobile="f2";
+            }
+            if (this.pilotrufnummer3.equals(this.number)){
+                GleichenummerGruppe3=true;
+                this.aapAdministrationsMobile="v3";
+            }else {
+                GleichenummerGruppe3=false;
+                this.aapAdministrationsMobile="f3";
+            }
+            if (this.pilotrufnummer4.equals(this.number)){
+                GleichenummerGruppe4=true;
+                this.aapAdministrationsMobile="v4";
+            }else {
+                GleichenummerGruppe4=false;
+                this.aapAdministrationsMobile="f4";
+            }
+
+
+            if ((ValidationTools.isNumeric(this.phoneNumberAndRange1)&&(ValidationTools.isNumeric(this.phoneRange1Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange2))&&(ValidationTools.isNumeric(this.phoneRange2Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange3))&&(ValidationTools.isNumeric(this.phoneRange3Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange4))&&(ValidationTools.isNumeric(this.phoneRange4Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange5))&&(ValidationTools.isNumeric(this.phoneRange5Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange6))&&(ValidationTools.isNumeric(this.phoneRange6Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange7))&&(ValidationTools.isNumeric(this.phoneRange7Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange8))&&(ValidationTools.isNumeric(this.phoneRange8Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange9))&&(ValidationTools.isNumeric(this.phoneRange9Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange10))&&(ValidationTools.isNumeric(this.phoneRange10Ende))) ){
+                this.locationRefNum1="Valid";
+                rowGruppe1=true;
+            }else{
+                this.locationRefNum1="Not Valid";
+                rowGruppe1=false;
+            }
+            if ((ValidationTools.isNumeric(this.phoneNumberAndRange11)&&(ValidationTools.isNumeric(this.phoneRange11Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange12))&&(ValidationTools.isNumeric(this.phoneRange12Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange13))&&(ValidationTools.isNumeric(this.phoneRange13Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange14))&&(ValidationTools.isNumeric(this.phoneRange14Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange15))&&(ValidationTools.isNumeric(this.phoneRange15Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange16))&&(ValidationTools.isNumeric(this.phoneRange16Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange17))&&(ValidationTools.isNumeric(this.phoneRange17Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange18))&&(ValidationTools.isNumeric(this.phoneRange18Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange19))&&(ValidationTools.isNumeric(this.phoneRange19Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange20))&&(ValidationTools.isNumeric(this.phoneRange20Ende))) ){
+                this.locationRefNum2="Valid";
+                rowGruppe2=true;
+            }else{
+                this.locationRefNum2="Not Valid";
+                rowGruppe2=false;
+            }
+            if ((ValidationTools.isNumeric(this.phoneNumberAndRange21)&&(ValidationTools.isNumeric(this.phoneRange21Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange22))&&(ValidationTools.isNumeric(this.phoneRange22Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange23))&&(ValidationTools.isNumeric(this.phoneRange23Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange24))&&(ValidationTools.isNumeric(this.phoneRange24Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange25))&&(ValidationTools.isNumeric(this.phoneRange25Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange26))&&(ValidationTools.isNumeric(this.phoneRange26Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange27))&&(ValidationTools.isNumeric(this.phoneRange27Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange28))&&(ValidationTools.isNumeric(this.phoneRange28Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange29))&&(ValidationTools.isNumeric(this.phoneRange29Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange30))&&(ValidationTools.isNumeric(this.phoneRange30Ende))) ){
+                this.locationRefNum3="Valid";
+                rowGruppe3=true;
+            }else{
+                this.locationRefNum3="Not Valid";
+                rowGruppe3=false;
+            }
+            if ((ValidationTools.isNumeric(this.phoneNumberAndRange31)&&(ValidationTools.isNumeric(this.phoneRange31Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange32))&&(ValidationTools.isNumeric(this.phoneRange32Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange33))&&(ValidationTools.isNumeric(this.phoneRange33Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange34))&&(ValidationTools.isNumeric(this.phoneRange34Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange35))&&(ValidationTools.isNumeric(this.phoneRange35Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange36))&&(ValidationTools.isNumeric(this.phoneRange36Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange37))&&(ValidationTools.isNumeric(this.phoneRange37Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange38))&&(ValidationTools.isNumeric(this.phoneRange38Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange39))&&(ValidationTools.isNumeric(this.phoneRange39Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange40))&&(ValidationTools.isNumeric(this.phoneRange40Ende))) ){
+                this.locationRefNum4="Valid";
+                rowGruppe4=true;
+            }else{
+                this.locationRefNum4="Not Valid";
+                rowGruppe4=false;
+            }
+            if (pilot1==true && GleichenummerGruppe1==true && rowGruppe1==true){
+                Gruppe1=true;
+            }if (pilot2==true &&GleichenummerGruppe2==true &&rowGruppe2==true){
+                Gruppe2=true;
+            }if (pilot3==true &&GleichenummerGruppe3==true &&rowGruppe3==true){
+                Gruppe3=true;
+            }if (pilot4==true &&GleichenummerGruppe4==true &&rowGruppe4==true){
+                Gruppe4=true;
+            }
+            if (Gruppe1==true||Gruppe2==true||Gruppe3==true||Gruppe4==true){
+                this.checkFehlers.add("Ein Gruppe ist Richtig");
+            }else{
+                this.checkFehlers.add("Gruppen hatten Fehler");
+            }
+        }
+
+
+        /*private String locationRefNum4;
+    private String pilotrufnummer4;
+    private String phoneNumberAndRange31;
+    private String phoneRange31Ende;
+    private String phoneNumberAndRange32;
+    private String phoneRange32Ende;
+    private String phoneNumberAndRange33;
+    private String phoneRange33Ende;
+    private String phoneNumberAndRange34;
+    private String phoneRange34Ende;
+    private String phoneNumberAndRange35;
+    private String phoneRange35Ende;
+    private String phoneNumberAndRange36;
+    private String phoneRange36Ende;
+    private String phoneNumberAndRange37;
+    private String phoneRange37Ende;
+    private String phoneNumberAndRange38;
+    private String phoneRange38Ende;
+    private String phoneNumberAndRange39;
+    private String phoneRange39Ende;
+    private String phoneNumberAndRange40;
+    private String phoneRange40Ende;  */
+
+
         if (this.voNummer == null || this.voNummer.length() == 0) {
             this.checkFehlers.add("voNummer leer");
             result = false;
