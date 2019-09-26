@@ -1781,7 +1781,7 @@ public class AAFormularData extends FormularData implements PDFConstants
         boolean Gruppe1=false,Gruppe2=false,Gruppe3=false,Gruppe4=false;
         int ZweiZeiteFehler1=0,ZweiZeiteFehler0=0,ZweiZeiteFehler2=0,ZweiZeiteFehler3=0;
 
-        if (this.irregular==false){//######################################################################################################
+        if (this.irregular==true){//######################################################################################################
             if (!(this.pilotrufnummer1.isEmpty())||!(this.phoneNumberAndRange1.isEmpty())||!(this.phoneRange1Ende.isEmpty())||!(this.phoneNumberAndRange2.isEmpty())||!(this.phoneRange2Ende.isEmpty())||!(this.phoneNumberAndRange3.isEmpty())||!(this.phoneRange3Ende.isEmpty())||!(this.phoneNumberAndRange4.isEmpty())||!(this.phoneRange4Ende.isEmpty())||!(this.phoneNumberAndRange5.isEmpty())||!(this.phoneRange5Ende.isEmpty())||!(this.phoneNumberAndRange6.isEmpty())||!(this.phoneRange6Ende.isEmpty())||!(this.phoneNumberAndRange7.isEmpty())||!(this.phoneRange7Ende.isEmpty())||!(this.phoneNumberAndRange8.isEmpty())||!(this.phoneRange8Ende.isEmpty())||!(this.phoneNumberAndRange9.isEmpty())||!(this.phoneRange9Ende.isEmpty())||!(this.phoneNumberAndRange10.isEmpty())||!(this.phoneRange10Ende.isEmpty())){
                 if (ValidationTools.isNumeric(this.pilotrufnummer1)) {
                     pilot1 = true;
@@ -2265,16 +2265,29 @@ public class AAFormularData extends FormularData implements PDFConstants
 
             //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
-
-
             /*if (Gruppe1==true||Gruppe2==true||Gruppe3==true||Gruppe4==true){
                 this.checkFehlers.add("Ein Gruppe ist Richtig");
             }else{
                 this.checkFehlers.add("Gruppen hatten Fehler");
             }*/
         }
-
+        if (aapOneGroupID.isEmpty()&&aapOneGroupPhoneNumber.isEmpty()){
+            if (aapAdministrationsFitma.isEmpty()){this.checkFehlers.add("Zeite 3 Firma Feld leer");}
+            if (aapAdministrationsNameAndSurname.isEmpty()){this.checkFehlers.add("Zeite 3 Vorname und Name Feld leer");}
+            if (aapAdministrationsStreetAndHouse.isEmpty()){this.checkFehlers.add("Zeite 3 Adresse Feld leer");}
+            if (aapAdministrationsZipAndCity.isEmpty()){this.checkFehlers.add("Zeite 3 Zip und City  Feld leer");}
+            if (aapAdministrationsEMail.isEmpty()){this.checkFehlers.add("Zeite 3 Email Feld leer");}
+        }else{
+            if (ValidationTools.isNumeric(aapOneGroupID)){this.checkFehlers.add("Zeite 3 GroupID Feld leer");}
+            if (ValidationTools.isNumeric(aapOneGroupPhoneNumber)){this.checkFehlers.add("Zeite 3 AA Plus PhoneNumber Feld leer");}
+            if (!(aapAdministrationsFitma.isEmpty())||!(aapAdministrationsNameAndSurname.isEmpty())||!(aapAdministrationsStreetAndHouse.isEmpty())||!(aapAdministrationsZipAndCity.isEmpty())||!(aapAdministrationsEMail.isEmpty())){
+                if (aapAdministrationsFitma.isEmpty()){this.checkFehlers.add("Zeite 3 Firma Feld leer");}
+                if (aapAdministrationsNameAndSurname.isEmpty()){this.checkFehlers.add("Zeite 3 Vorname und Name Feld leer");}
+                if (aapAdministrationsStreetAndHouse.isEmpty()){this.checkFehlers.add("Zeite 3 Adresse Feld leer");}
+                if (aapAdministrationsZipAndCity.isEmpty()){this.checkFehlers.add("Zeite 3 Zip und City  Feld leer");}
+                if (aapAdministrationsEMail.isEmpty()){this.checkFehlers.add("Zeite 3 Email Feld leer");}
+            }
+        }
 
         /*private String locationRefNum4;
     private String pilotrufnummer4;
