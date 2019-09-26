@@ -1771,96 +1771,488 @@ public class AAFormularData extends FormularData implements PDFConstants
             result = false;
         }
         //Rufnummernschema
-        boolean rowGruppe1, rowGruppe2, rowGruppe3, rowGruppe4;
+        boolean rowGruppe0,rowGruppe0_1=false,rowGruppe0_2=false,rowGruppe0_3=false,rowGruppe0_4=false,rowGruppe0_5=false,rowGruppe0_6=false,rowGruppe0_7=false,rowGruppe0_8=false, rowGruppe0_9=false, rowGruppe0_10=false;
+        boolean rowGruppe1,rowGruppe1_1=false,rowGruppe1_2=false,rowGruppe1_3=false,rowGruppe1_4=false,rowGruppe1_5=false,rowGruppe1_6=false,rowGruppe1_7=false,rowGruppe1_8=false, rowGruppe1_9=false, rowGruppe1_10=false;
+        boolean rowGruppe2,rowGruppe2_1=false,rowGruppe2_2=false,rowGruppe2_3=false,rowGruppe2_4=false,rowGruppe2_5=false,rowGruppe2_6=false,rowGruppe2_7=false,rowGruppe2_8=false, rowGruppe2_9=false, rowGruppe2_10=false;
+        boolean rowGruppe3,rowGruppe3_1=false,rowGruppe3_2=false,rowGruppe3_3=false,rowGruppe3_4=false,rowGruppe3_5=false,rowGruppe3_6=false,rowGruppe3_7=false,rowGruppe3_8=false, rowGruppe3_9=false, rowGruppe3_10=false;
+
         boolean GleichenummerGruppe1, GleichenummerGruppe2, GleichenummerGruppe3, GleichenummerGruppe4;
         boolean pilot1=false, pilot2=false, pilot3=false,pilot4=false;
         boolean Gruppe1=false,Gruppe2=false,Gruppe3=false,Gruppe4=false;
+        int ZweiZeiteFehler1=0,ZweiZeiteFehler0=0,ZweiZeiteFehler2=0,ZweiZeiteFehler3=0;
 
         if (this.irregular==false){//######################################################################################################
             if (ValidationTools.isNumeric(this.pilotrufnummer1)){
                 pilot1=true;
-            }else if (ValidationTools.isNumeric(this.pilotrufnummer2)){
-                pilot2=true;
-            }else if (ValidationTools.isNumeric(this.pilotrufnummer1)){
-                pilot3=true;
-            }else if (ValidationTools.isNumeric(this.pilotrufnummer1)){
-                pilot4=true;
-            }else {
-                pilot1=false;pilot2=false;pilot3=false;pilot4=false;
+            }else{
+                this.checkFehlers.add("Gruppe 1 Anlagenrufnummer Fehler");
             }
-
             if (this.pilotrufnummer1.equals(this.number)){
                 GleichenummerGruppe1=true;
-                this.aapAdministrationsPhoneNumber="v1";
             }else {
                 GleichenummerGruppe1=false;
-                this.aapAdministrationsPhoneNumber="f1";
+                this.checkFehlers.add("Gruppe 1 Pilotrufnummer und Anlagenrufnummer sind nicht gleich");
+            }
+            if (!(this.phoneNumberAndRange1.isEmpty())&&!(this.phoneRange1Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange1)&&(ValidationTools.isNumeric(this.phoneRange1Ende))){
+                    rowGruppe0_1=true;
+                }else {
+                    ZweiZeiteFehler0++;
+                }
+            }else if((!(this.phoneNumberAndRange1.isEmpty())&&(this.phoneRange1Ende.isEmpty()))||((this.phoneNumberAndRange1.isEmpty())&&!(this.phoneRange1Ende.isEmpty()))){
+                ZweiZeiteFehler0++;
+            }
+            if (!(this.phoneNumberAndRange2.isEmpty())&&!(this.phoneRange2Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange2)&&(ValidationTools.isNumeric(this.phoneRange2Ende))){
+                    rowGruppe0_2=true;
+                }else {
+                    ZweiZeiteFehler0++;
+                }
+            }else if((!(this.phoneNumberAndRange2.isEmpty())&&(this.phoneRange2Ende.isEmpty()))||((this.phoneNumberAndRange2.isEmpty())&&!(this.phoneRange2Ende.isEmpty()))){
+                ZweiZeiteFehler0++;
+            }
+            if (!(this.phoneNumberAndRange3.isEmpty())&&!(this.phoneRange3Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange3)&&(ValidationTools.isNumeric(this.phoneRange3Ende))){
+                    rowGruppe0_3=true;
+                }else {
+                    ZweiZeiteFehler0++;
+                }
+            }else if((!(this.phoneNumberAndRange3.isEmpty())&&(this.phoneRange3Ende.isEmpty()))||((this.phoneNumberAndRange3.isEmpty())&&!(this.phoneRange3Ende.isEmpty()))){
+                ZweiZeiteFehler0++;
+            }
+            if (!(this.phoneNumberAndRange4.isEmpty())&&!(this.phoneRange4Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange4)&&(ValidationTools.isNumeric(this.phoneRange4Ende))){
+                    rowGruppe0_4=true;
+                }else {
+                    ZweiZeiteFehler0++;
+                }
+            }else if((!(this.phoneNumberAndRange4.isEmpty())&&(this.phoneRange4Ende.isEmpty()))||((this.phoneNumberAndRange4.isEmpty())&&!(this.phoneRange4Ende.isEmpty()))){
+                ZweiZeiteFehler0++;
+            }
+            if (!(this.phoneNumberAndRange5.isEmpty())&&!(this.phoneRange5Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange5)&&(ValidationTools.isNumeric(this.phoneRange5Ende))){
+                    rowGruppe0_5=true;
+                }else {
+                    ZweiZeiteFehler0++;
+                }
+            }else if((!(this.phoneNumberAndRange5.isEmpty())&&(this.phoneRange5Ende.isEmpty()))||((this.phoneNumberAndRange5.isEmpty())&&!(this.phoneRange5Ende.isEmpty()))){
+                ZweiZeiteFehler0++;
+            }
+            if (!(this.phoneNumberAndRange6.isEmpty())&&!(this.phoneRange6Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange6)&&(ValidationTools.isNumeric(this.phoneRange6Ende))){
+                    rowGruppe0_6=true;
+                }else {
+                    ZweiZeiteFehler0++;
+                }
+            }else if((!(this.phoneNumberAndRange6.isEmpty())&&(this.phoneRange6Ende.isEmpty()))||((this.phoneNumberAndRange6.isEmpty())&&!(this.phoneRange6Ende.isEmpty()))){
+                ZweiZeiteFehler0++;
+            }
+            if (!(this.phoneNumberAndRange7.isEmpty())&&!(this.phoneRange7Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange7)&&(ValidationTools.isNumeric(this.phoneRange7Ende))){
+                    rowGruppe0_7=true;
+                }else {
+                    ZweiZeiteFehler0++;
+                }
+            }else if((!(this.phoneNumberAndRange7.isEmpty())&&(this.phoneRange7Ende.isEmpty()))||((this.phoneNumberAndRange7.isEmpty())&&!(this.phoneRange7Ende.isEmpty()))){
+                ZweiZeiteFehler0++;
+            }
+            if (!(this.phoneNumberAndRange8.isEmpty())&&!(this.phoneRange8Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange8)&&(ValidationTools.isNumeric(this.phoneRange8Ende))){
+                    rowGruppe0_8=true;
+                }else {
+                    ZweiZeiteFehler0++;
+                }
+            }else if((!(this.phoneNumberAndRange8.isEmpty())&&(this.phoneRange8Ende.isEmpty()))||((this.phoneNumberAndRange8.isEmpty())&&!(this.phoneRange8Ende.isEmpty()))){
+                ZweiZeiteFehler0++;
+            }
+            if (!(this.phoneNumberAndRange9.isEmpty())&&!(this.phoneRange9Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange9)&&(ValidationTools.isNumeric(this.phoneRange9Ende))){
+                    rowGruppe0_9=true;
+                }else {
+                    ZweiZeiteFehler0++;
+                }
+            }else if((!(this.phoneNumberAndRange9.isEmpty())&&(this.phoneRange9Ende.isEmpty()))||((this.phoneNumberAndRange9.isEmpty())&&!(this.phoneRange9Ende.isEmpty()))){
+                ZweiZeiteFehler0++;
+            }
+            if (!(this.phoneNumberAndRange10.isEmpty())&&!(this.phoneRange10Ende.isEmpty())) {
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange10) && (ValidationTools.isNumeric(this.phoneRange10Ende))) {
+                    rowGruppe0_10 = true;
+                } else {
+                    ZweiZeiteFehler0++;
+                }
+            }else if((!(this.phoneNumberAndRange10.isEmpty())&&(this.phoneRange10Ende.isEmpty()))||((this.phoneNumberAndRange10.isEmpty())&&!(this.phoneRange10Ende.isEmpty()))){
+                ZweiZeiteFehler0++;
+            }
+            if (ZweiZeiteFehler0>=1){
+                this.checkFehlers.add("Gruppe 1 hat "+ZweiZeiteFehler0+" Fehler");
+            }
+            if (rowGruppe0_1 || rowGruppe0_2||rowGruppe0_3||rowGruppe0_4||rowGruppe0_5||rowGruppe0_6||rowGruppe0_7||rowGruppe0_8|| rowGruppe0_9|| rowGruppe0_10){
+                rowGruppe0=true;
+            }else{
+                rowGruppe0=false;
+            }
+
+            //------------------------------------------------------------------------------------------------------------------------------------------------
+            if (ValidationTools.isNumeric(this.pilotrufnummer2)){
+                pilot2=true;
+            }else{
+                this.checkFehlers.add("Gruppe 2 Anlagenrufnummer Fehler");
             }
             if (this.pilotrufnummer2.equals(this.number)){
                 GleichenummerGruppe2=true;
-                this.aapAdministrationsMobile="v2";
             }else {
                 GleichenummerGruppe2=false;
-                this.aapAdministrationsMobile="f2";
+                this.checkFehlers.add("Gruppe 2 Pilotrufnummer und Anlagenrufnummer sind nicht gleich");
             }
+            if (!(this.phoneNumberAndRange11.isEmpty())&&!(this.phoneRange11Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange11)&&(ValidationTools.isNumeric(this.phoneRange11Ende))){
+                    rowGruppe1_1=true;
+                }else {
+                    ZweiZeiteFehler1++;
+                }
+            }else if((!(this.phoneNumberAndRange11.isEmpty())&&(this.phoneRange11Ende.isEmpty()))||((this.phoneNumberAndRange11.isEmpty())&&!(this.phoneRange11Ende.isEmpty()))){
+                ZweiZeiteFehler1++;
+            }
+            if (!(this.phoneNumberAndRange12.isEmpty())&&!(this.phoneRange12Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange12)&&(ValidationTools.isNumeric(this.phoneRange12Ende))){
+                    rowGruppe1_2=true;
+                }else {
+                    ZweiZeiteFehler1++;
+                }
+            }else if((!(this.phoneNumberAndRange12.isEmpty())&&(this.phoneRange12Ende.isEmpty()))||((this.phoneNumberAndRange12.isEmpty())&&!(this.phoneRange12Ende.isEmpty()))){
+                ZweiZeiteFehler1++;
+            }
+            if (!(this.phoneNumberAndRange13.isEmpty())&&!(this.phoneRange13Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange13)&&(ValidationTools.isNumeric(this.phoneRange13Ende))){
+                    rowGruppe1_3=true;
+                }else {
+                    ZweiZeiteFehler1++;
+                }
+            }else if((!(this.phoneNumberAndRange13.isEmpty())&&(this.phoneRange13Ende.isEmpty()))||((this.phoneNumberAndRange13.isEmpty())&&!(this.phoneRange13Ende.isEmpty()))){
+                ZweiZeiteFehler1++;
+            }
+            if (!(this.phoneNumberAndRange14.isEmpty())&&!(this.phoneRange14Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange14)&&(ValidationTools.isNumeric(this.phoneRange14Ende))){
+                    rowGruppe1_4=true;
+                }else {
+                    ZweiZeiteFehler1++;
+                }
+            }else if((!(this.phoneNumberAndRange14.isEmpty())&&(this.phoneRange14Ende.isEmpty()))||((this.phoneNumberAndRange14.isEmpty())&&!(this.phoneRange14Ende.isEmpty()))){
+                ZweiZeiteFehler1++;
+            }
+            if (!(this.phoneNumberAndRange15.isEmpty())&&!(this.phoneRange15Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange15)&&(ValidationTools.isNumeric(this.phoneRange15Ende))){
+                    rowGruppe1_5=true;
+                }else {
+                    ZweiZeiteFehler1++;
+                }
+            }else if((!(this.phoneNumberAndRange15.isEmpty())&&(this.phoneRange15Ende.isEmpty()))||((this.phoneNumberAndRange15.isEmpty())&&!(this.phoneRange15Ende.isEmpty()))){
+                ZweiZeiteFehler1++;
+            }
+            if (!(this.phoneNumberAndRange16.isEmpty())&&!(this.phoneRange16Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange16)&&(ValidationTools.isNumeric(this.phoneRange16Ende))){
+                    rowGruppe1_6=true;
+                }else {
+                    ZweiZeiteFehler1++;
+                }
+            }else if((!(this.phoneNumberAndRange16.isEmpty())&&(this.phoneRange16Ende.isEmpty()))||((this.phoneNumberAndRange16.isEmpty())&&!(this.phoneRange16Ende.isEmpty()))){
+                ZweiZeiteFehler1++;
+            }
+            if (!(this.phoneNumberAndRange17.isEmpty())&&!(this.phoneRange17Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange17)&&(ValidationTools.isNumeric(this.phoneRange17Ende))){
+                    rowGruppe1_7=true;
+                }else {
+                    ZweiZeiteFehler1++;
+                }
+            }else if((!(this.phoneNumberAndRange17.isEmpty())&&(this.phoneRange17Ende.isEmpty()))||((this.phoneNumberAndRange17.isEmpty())&&!(this.phoneRange17Ende.isEmpty()))){
+                ZweiZeiteFehler1++;
+            }
+            if (!(this.phoneNumberAndRange18.isEmpty())&&!(this.phoneRange18Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange18)&&(ValidationTools.isNumeric(this.phoneRange18Ende))){
+                    rowGruppe1_8=true;
+                }else {
+                    ZweiZeiteFehler1++;
+                }
+            }else if((!(this.phoneNumberAndRange18.isEmpty())&&(this.phoneRange18Ende.isEmpty()))||((this.phoneNumberAndRange18.isEmpty())&&!(this.phoneRange18Ende.isEmpty()))){
+                ZweiZeiteFehler1++;
+            }
+            if (!(this.phoneNumberAndRange19.isEmpty())&&!(this.phoneRange19Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange19)&&(ValidationTools.isNumeric(this.phoneRange19Ende))){
+                    rowGruppe1_9=true;
+                }else {
+                    ZweiZeiteFehler1++;
+                }
+            }else if((!(this.phoneNumberAndRange19.isEmpty())&&(this.phoneRange19Ende.isEmpty()))||((this.phoneNumberAndRange19.isEmpty())&&!(this.phoneRange19Ende.isEmpty()))){
+                ZweiZeiteFehler1++;
+            }
+            if (!(this.phoneNumberAndRange20.isEmpty())&&!(this.phoneRange20Ende.isEmpty())) {
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange20) && (ValidationTools.isNumeric(this.phoneRange20Ende))) {
+                    rowGruppe1_10 = true;
+                } else {
+                    ZweiZeiteFehler1++;
+                }
+            }else if((!(this.phoneNumberAndRange20.isEmpty())&&(this.phoneRange20Ende.isEmpty()))||((this.phoneNumberAndRange20.isEmpty())&&!(this.phoneRange20Ende.isEmpty()))){
+                ZweiZeiteFehler1++;
+            }
+            if (ZweiZeiteFehler1>=1){
+                this.checkFehlers.add("Gruppe 2 hat "+ZweiZeiteFehler1+" Fehler");
+            }
+            if (rowGruppe1_1 || rowGruppe1_2||rowGruppe1_3||rowGruppe1_4||rowGruppe1_5||rowGruppe1_6||rowGruppe1_7||rowGruppe1_8|| rowGruppe1_9|| rowGruppe1_10){
+                rowGruppe1=true;
+            }else{
+                rowGruppe1=false;
+            }
+
+            //------------------------------------------------------------------------------------------------------------------------------------------------
+            if (ValidationTools.isNumeric(this.pilotrufnummer3)){
+                pilot3=true;
+            }else{
+                this.checkFehlers.add("Gruppe 3 Anlagenrufnummer Fehler");
+            }
+
             if (this.pilotrufnummer3.equals(this.number)){
                 GleichenummerGruppe3=true;
-                this.aapAdministrationsMobile="v3";
             }else {
                 GleichenummerGruppe3=false;
-                this.aapAdministrationsMobile="f3";
+                this.checkFehlers.add("Gruppe 3 Pilotrufnummer und Anlagenrufnummer sind nicht gleich");
+            }
+            if (!(this.phoneNumberAndRange21.isEmpty())&&!(this.phoneRange21Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange21)&&(ValidationTools.isNumeric(this.phoneRange21Ende))){
+                    rowGruppe2_1=true;
+                }else {
+                    ZweiZeiteFehler2++;
+                }
+            }else if((!(this.phoneNumberAndRange21.isEmpty())&&(this.phoneRange21Ende.isEmpty()))||((this.phoneNumberAndRange21.isEmpty())&&!(this.phoneRange21Ende.isEmpty()))){
+                ZweiZeiteFehler2++;
+            }
+            if (!(this.phoneNumberAndRange22.isEmpty())&&!(this.phoneRange22Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange22)&&(ValidationTools.isNumeric(this.phoneRange22Ende))){
+                    rowGruppe2_2=true;
+                }else {
+                    ZweiZeiteFehler2++;
+                }
+            }else if((!(this.phoneNumberAndRange22.isEmpty())&&(this.phoneRange22Ende.isEmpty()))||((this.phoneNumberAndRange22.isEmpty())&&!(this.phoneRange22Ende.isEmpty()))){
+                ZweiZeiteFehler2++;
+            }
+            if (!(this.phoneNumberAndRange23.isEmpty())&&!(this.phoneRange23Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange23)&&(ValidationTools.isNumeric(this.phoneRange23Ende))){
+                    rowGruppe2_3=true;
+                }else {
+                    ZweiZeiteFehler2++;
+                }
+            }else if((!(this.phoneNumberAndRange23.isEmpty())&&(this.phoneRange23Ende.isEmpty()))||((this.phoneNumberAndRange23.isEmpty())&&!(this.phoneRange23Ende.isEmpty()))){
+                ZweiZeiteFehler2++;
+            }
+            if (!(this.phoneNumberAndRange24.isEmpty())&&!(this.phoneRange24Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange24)&&(ValidationTools.isNumeric(this.phoneRange24Ende))){
+                    rowGruppe2_4=true;
+                }else {
+                    ZweiZeiteFehler2++;
+                }
+            }else if((!(this.phoneNumberAndRange24.isEmpty())&&(this.phoneRange24Ende.isEmpty()))||((this.phoneNumberAndRange24.isEmpty())&&!(this.phoneRange24Ende.isEmpty()))){
+                ZweiZeiteFehler2++;
+            }
+            if (!(this.phoneNumberAndRange25.isEmpty())&&!(this.phoneRange25Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange25)&&(ValidationTools.isNumeric(this.phoneRange25Ende))){
+                    rowGruppe2_5=true;
+                }else {
+                    ZweiZeiteFehler2++;
+                }
+            }else if((!(this.phoneNumberAndRange25.isEmpty())&&(this.phoneRange25Ende.isEmpty()))||((this.phoneNumberAndRange25.isEmpty())&&!(this.phoneRange25Ende.isEmpty()))){
+                ZweiZeiteFehler2++;
+            }
+            if (!(this.phoneNumberAndRange26.isEmpty())&&!(this.phoneRange26Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange26)&&(ValidationTools.isNumeric(this.phoneRange26Ende))){
+                    rowGruppe2_6=true;
+                }else {
+                    ZweiZeiteFehler2++;
+                }
+            }else if((!(this.phoneNumberAndRange26.isEmpty())&&(this.phoneRange26Ende.isEmpty()))||((this.phoneNumberAndRange26.isEmpty())&&!(this.phoneRange26Ende.isEmpty()))){
+                ZweiZeiteFehler2++;
+            }
+            if (!(this.phoneNumberAndRange27.isEmpty())&&!(this.phoneRange27Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange27)&&(ValidationTools.isNumeric(this.phoneRange27Ende))){
+                    rowGruppe2_7=true;
+                }else {
+                    ZweiZeiteFehler2++;
+                }
+            }else if((!(this.phoneNumberAndRange27.isEmpty())&&(this.phoneRange27Ende.isEmpty()))||((this.phoneNumberAndRange27.isEmpty())&&!(this.phoneRange27Ende.isEmpty()))){
+                ZweiZeiteFehler2++;
+            }
+            if (!(this.phoneNumberAndRange28.isEmpty())&&!(this.phoneRange28Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange28)&&(ValidationTools.isNumeric(this.phoneRange28Ende))){
+                    rowGruppe2_8=true;
+                }else {
+                    ZweiZeiteFehler2++;
+                }
+            }else if((!(this.phoneNumberAndRange28.isEmpty())&&(this.phoneRange28Ende.isEmpty()))||((this.phoneNumberAndRange28.isEmpty())&&!(this.phoneRange28Ende.isEmpty()))){
+                ZweiZeiteFehler2++;
+            }
+            if (!(this.phoneNumberAndRange29.isEmpty())&&!(this.phoneRange29Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange29)&&(ValidationTools.isNumeric(this.phoneRange29Ende))){
+                    rowGruppe2_9=true;
+                }else {
+                    ZweiZeiteFehler2++;
+                }
+            }else if((!(this.phoneNumberAndRange29.isEmpty())&&(this.phoneRange29Ende.isEmpty()))||((this.phoneNumberAndRange29.isEmpty())&&!(this.phoneRange29Ende.isEmpty()))){
+                ZweiZeiteFehler2++;
+            }
+            if (!(this.phoneNumberAndRange30.isEmpty())&&!(this.phoneRange30Ende.isEmpty())) {
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange30) && (ValidationTools.isNumeric(this.phoneRange30Ende))) {
+                    rowGruppe2_10 = true;
+                } else {
+                    ZweiZeiteFehler2++;
+                }
+            }else if((!(this.phoneNumberAndRange30.isEmpty())&&(this.phoneRange30Ende.isEmpty()))||((this.phoneNumberAndRange30.isEmpty())&&!(this.phoneRange30Ende.isEmpty()))){
+                ZweiZeiteFehler2++;
+            }
+            if (ZweiZeiteFehler2>=1){
+                this.checkFehlers.add("Gruppe 3 hat "+ZweiZeiteFehler2+" Fehler");
+            }
+            if (rowGruppe2_1 || rowGruppe2_2||rowGruppe2_3||rowGruppe2_4||rowGruppe2_5||rowGruppe2_6||rowGruppe2_7||rowGruppe2_8|| rowGruppe2_9|| rowGruppe2_10){
+                rowGruppe2=true;
+            }else{
+                rowGruppe2=false;
+            }
+
+            //------------------------------------------------------------------------------------------------------------------------------------------------
+            if (ValidationTools.isNumeric(this.pilotrufnummer4)){
+                pilot4=true;
+            }else{
+                this.checkFehlers.add("Gruppe 4 Anlagenrufnummer Fehler");
             }
             if (this.pilotrufnummer4.equals(this.number)){
                 GleichenummerGruppe4=true;
-                this.aapAdministrationsMobile="v4";
             }else {
                 GleichenummerGruppe4=false;
-                this.aapAdministrationsMobile="f4";
+                this.checkFehlers.add("Gruppe 4 Pilotrufnummer und Anlagenrufnummer sind nicht gleich");
             }
 
-
-            if ((ValidationTools.isNumeric(this.phoneNumberAndRange1)&&(ValidationTools.isNumeric(this.phoneRange1Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange2))&&(ValidationTools.isNumeric(this.phoneRange2Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange3))&&(ValidationTools.isNumeric(this.phoneRange3Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange4))&&(ValidationTools.isNumeric(this.phoneRange4Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange5))&&(ValidationTools.isNumeric(this.phoneRange5Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange6))&&(ValidationTools.isNumeric(this.phoneRange6Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange7))&&(ValidationTools.isNumeric(this.phoneRange7Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange8))&&(ValidationTools.isNumeric(this.phoneRange8Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange9))&&(ValidationTools.isNumeric(this.phoneRange9Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange10))&&(ValidationTools.isNumeric(this.phoneRange10Ende))) ){
-                this.locationRefNum1="Valid";
-                rowGruppe1=true;
-            }else{
-                this.locationRefNum1="Not Valid";
-                rowGruppe1=false;
+            if (!(this.phoneNumberAndRange31.isEmpty())&&!(this.phoneRange31Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange31)&&(ValidationTools.isNumeric(this.phoneRange31Ende))){
+                    rowGruppe3_1=true;
+                }else {
+                    ZweiZeiteFehler3++;
+                }
+            }else if((!(this.phoneNumberAndRange31.isEmpty())&&(this.phoneRange31Ende.isEmpty()))||((this.phoneNumberAndRange31.isEmpty())&&!(this.phoneRange31Ende.isEmpty()))){
+                ZweiZeiteFehler3++;
             }
-            if ((ValidationTools.isNumeric(this.phoneNumberAndRange11)&&(ValidationTools.isNumeric(this.phoneRange11Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange12))&&(ValidationTools.isNumeric(this.phoneRange12Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange13))&&(ValidationTools.isNumeric(this.phoneRange13Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange14))&&(ValidationTools.isNumeric(this.phoneRange14Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange15))&&(ValidationTools.isNumeric(this.phoneRange15Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange16))&&(ValidationTools.isNumeric(this.phoneRange16Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange17))&&(ValidationTools.isNumeric(this.phoneRange17Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange18))&&(ValidationTools.isNumeric(this.phoneRange18Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange19))&&(ValidationTools.isNumeric(this.phoneRange19Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange20))&&(ValidationTools.isNumeric(this.phoneRange20Ende))) ){
-                this.locationRefNum2="Valid";
-                rowGruppe2=true;
-            }else{
-                this.locationRefNum2="Not Valid";
-                rowGruppe2=false;
+            if (!(this.phoneNumberAndRange32.isEmpty())&&!(this.phoneRange32Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange32)&&(ValidationTools.isNumeric(this.phoneRange32Ende))){
+                    rowGruppe3_2=true;
+                }else {
+                    ZweiZeiteFehler3++;
+                }
+            }else if((!(this.phoneNumberAndRange32.isEmpty())&&(this.phoneRange32Ende.isEmpty()))||((this.phoneNumberAndRange32.isEmpty())&&!(this.phoneRange32Ende.isEmpty()))){
+                ZweiZeiteFehler3++;
             }
-            if ((ValidationTools.isNumeric(this.phoneNumberAndRange21)&&(ValidationTools.isNumeric(this.phoneRange21Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange22))&&(ValidationTools.isNumeric(this.phoneRange22Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange23))&&(ValidationTools.isNumeric(this.phoneRange23Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange24))&&(ValidationTools.isNumeric(this.phoneRange24Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange25))&&(ValidationTools.isNumeric(this.phoneRange25Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange26))&&(ValidationTools.isNumeric(this.phoneRange26Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange27))&&(ValidationTools.isNumeric(this.phoneRange27Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange28))&&(ValidationTools.isNumeric(this.phoneRange28Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange29))&&(ValidationTools.isNumeric(this.phoneRange29Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange30))&&(ValidationTools.isNumeric(this.phoneRange30Ende))) ){
-                this.locationRefNum3="Valid";
+            if (!(this.phoneNumberAndRange33.isEmpty())&&!(this.phoneRange33Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange33)&&(ValidationTools.isNumeric(this.phoneRange33Ende))){
+                    rowGruppe3_3=true;
+                }else {
+                    ZweiZeiteFehler3++;
+                }
+            }else if((!(this.phoneNumberAndRange33.isEmpty())&&(this.phoneRange33Ende.isEmpty()))||((this.phoneNumberAndRange33.isEmpty())&&!(this.phoneRange33Ende.isEmpty()))){
+                ZweiZeiteFehler3++;
+            }
+            if (!(this.phoneNumberAndRange34.isEmpty())&&!(this.phoneRange34Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange34)&&(ValidationTools.isNumeric(this.phoneRange34Ende))){
+                    rowGruppe3_4=true;
+                }else {
+                    ZweiZeiteFehler3++;
+                }
+            }else if((!(this.phoneNumberAndRange34.isEmpty())&&(this.phoneRange34Ende.isEmpty()))||((this.phoneNumberAndRange34.isEmpty())&&!(this.phoneRange34Ende.isEmpty()))){
+                ZweiZeiteFehler3++;
+            }
+            if (!(this.phoneNumberAndRange35.isEmpty())&&!(this.phoneRange35Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange35)&&(ValidationTools.isNumeric(this.phoneRange35Ende))){
+                    rowGruppe3_5=true;
+                }else {
+                    ZweiZeiteFehler3++;
+                }
+            }else if((!(this.phoneNumberAndRange35.isEmpty())&&(this.phoneRange35Ende.isEmpty()))||((this.phoneNumberAndRange35.isEmpty())&&!(this.phoneRange35Ende.isEmpty()))){
+                ZweiZeiteFehler3++;
+            }
+            if (!(this.phoneNumberAndRange36.isEmpty())&&!(this.phoneRange36Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange36)&&(ValidationTools.isNumeric(this.phoneRange36Ende))){
+                    rowGruppe3_6=true;
+                }else {
+                    ZweiZeiteFehler3++;
+                }
+            }else if((!(this.phoneNumberAndRange36.isEmpty())&&(this.phoneRange36Ende.isEmpty()))||((this.phoneNumberAndRange36.isEmpty())&&!(this.phoneRange36Ende.isEmpty()))){
+                ZweiZeiteFehler3++;
+            }
+            if (!(this.phoneNumberAndRange37.isEmpty())&&!(this.phoneRange37Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange37)&&(ValidationTools.isNumeric(this.phoneRange37Ende))){
+                    rowGruppe3_7=true;
+                }else {
+                    ZweiZeiteFehler3++;
+                }
+            }else if((!(this.phoneNumberAndRange37.isEmpty())&&(this.phoneRange37Ende.isEmpty()))||((this.phoneNumberAndRange37.isEmpty())&&!(this.phoneRange37Ende.isEmpty()))){
+                ZweiZeiteFehler3++;
+            }
+            if (!(this.phoneNumberAndRange38.isEmpty())&&!(this.phoneRange38Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange38)&&(ValidationTools.isNumeric(this.phoneRange38Ende))){
+                    rowGruppe3_8=true;
+                }else {
+                    ZweiZeiteFehler3++;
+                }
+            }else if((!(this.phoneNumberAndRange38.isEmpty())&&(this.phoneRange38Ende.isEmpty()))||((this.phoneNumberAndRange38.isEmpty())&&!(this.phoneRange38Ende.isEmpty()))){
+                ZweiZeiteFehler3++;
+            }
+            if (!(this.phoneNumberAndRange39.isEmpty())&&!(this.phoneRange39Ende.isEmpty())){
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange39)&&(ValidationTools.isNumeric(this.phoneRange39Ende))){
+                    rowGruppe3_9=true;
+                }else {
+                    ZweiZeiteFehler3++;
+                }
+            }else if((!(this.phoneNumberAndRange39.isEmpty())&&(this.phoneRange39Ende.isEmpty()))||((this.phoneNumberAndRange39.isEmpty())&&!(this.phoneRange39Ende.isEmpty()))){
+                ZweiZeiteFehler3++;
+            }
+            if (!(this.phoneNumberAndRange40.isEmpty())&&!(this.phoneRange40Ende.isEmpty())) {
+                if (ValidationTools.isNumeric(this.phoneNumberAndRange40) && (ValidationTools.isNumeric(this.phoneRange40Ende))) {
+                    rowGruppe3_10 = true;
+                } else {
+                    ZweiZeiteFehler3++;
+                }
+            }else if((!(this.phoneNumberAndRange40.isEmpty())&&(this.phoneRange40Ende.isEmpty()))||((this.phoneNumberAndRange40.isEmpty())&&!(this.phoneRange40Ende.isEmpty()))){
+                ZweiZeiteFehler3++;
+            }
+            if (ZweiZeiteFehler3>=1){
+                this.checkFehlers.add("Gruppe 4 hat "+ZweiZeiteFehler3+" Fehler");
+            }
+            if (rowGruppe3_1 || rowGruppe3_2||rowGruppe3_3||rowGruppe3_4||rowGruppe3_5||rowGruppe3_6||rowGruppe3_7||rowGruppe3_8|| rowGruppe3_9|| rowGruppe3_10){
                 rowGruppe3=true;
             }else{
-                this.locationRefNum3="Not Valid";
                 rowGruppe3=false;
             }
-            if ((ValidationTools.isNumeric(this.phoneNumberAndRange31)&&(ValidationTools.isNumeric(this.phoneRange31Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange32))&&(ValidationTools.isNumeric(this.phoneRange32Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange33))&&(ValidationTools.isNumeric(this.phoneRange33Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange34))&&(ValidationTools.isNumeric(this.phoneRange34Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange35))&&(ValidationTools.isNumeric(this.phoneRange35Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange36))&&(ValidationTools.isNumeric(this.phoneRange36Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange37))&&(ValidationTools.isNumeric(this.phoneRange37Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange38))&&(ValidationTools.isNumeric(this.phoneRange38Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange39))&&(ValidationTools.isNumeric(this.phoneRange39Ende)))||((ValidationTools.isNumeric(this.phoneNumberAndRange40))&&(ValidationTools.isNumeric(this.phoneRange40Ende))) ){
-                this.locationRefNum4="Valid";
-                rowGruppe4=true;
-            }else{
-                this.locationRefNum4="Not Valid";
-                rowGruppe4=false;
-            }
-            if (pilot1==true && GleichenummerGruppe1==true && rowGruppe1==true){
+
+            //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+            if (pilot1==true && GleichenummerGruppe1==true && rowGruppe0==true&&ZweiZeiteFehler0==0){
                 Gruppe1=true;
-            }if (pilot2==true &&GleichenummerGruppe2==true &&rowGruppe2==true){
-                Gruppe2=true;
-            }if (pilot3==true &&GleichenummerGruppe3==true &&rowGruppe3==true){
-                Gruppe3=true;
-            }if (pilot4==true &&GleichenummerGruppe4==true &&rowGruppe4==true){
-                Gruppe4=true;
+            }else{
+                this.checkFehlers.add("Gruppe 1 hat Fehler");
             }
-            if (Gruppe1==true||Gruppe2==true||Gruppe3==true||Gruppe4==true){
+            if (pilot2==true &&GleichenummerGruppe2==true &&rowGruppe1==true&&ZweiZeiteFehler1==0){
+                Gruppe2=true;
+            }else{
+                this.checkFehlers.add("Gruppe 2 hat Fehler");
+            }
+            if (pilot3==true &&GleichenummerGruppe3==true &&rowGruppe2==true&&ZweiZeiteFehler2==0){
+                Gruppe3=true;
+            }else{
+                this.checkFehlers.add("Gruppe 3 hat Fehler");
+            }if (pilot4==true &&GleichenummerGruppe4==true &&rowGruppe3==true&&ZweiZeiteFehler3==0){
+                Gruppe4=true;
+            }else{
+                this.checkFehlers.add("Gruppe 4 hat Fehler");
+            }
+            /*if (Gruppe1==true||Gruppe2==true||Gruppe3==true||Gruppe4==true){
                 this.checkFehlers.add("Ein Gruppe ist Richtig");
             }else{
                 this.checkFehlers.add("Gruppen hatten Fehler");
-            }
+            }*/
         }
 
 

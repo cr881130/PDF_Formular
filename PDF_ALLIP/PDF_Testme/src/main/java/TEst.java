@@ -40,8 +40,11 @@ public class TEst {
     public static void main(String[] args) {
         System.out.println("Hello World");
 
+        System.out.println(isNumeric(""));
+        System.out.println(isNumeric("#"));
         System.out.println(isNumeric("8"));
-        System.out.println(!(isNumeric("&%7")));
+        System.out.println(isNumeric("8s"));
+        System.out.println((isNumeric("&%7")));
         System.out.println(!containsDigit("$%/&%/&%8"));
 
 
