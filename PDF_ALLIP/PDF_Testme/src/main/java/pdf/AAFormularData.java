@@ -2278,8 +2278,8 @@ public class AAFormularData extends FormularData implements PDFConstants
             if (aapAdministrationsZipAndCity.isEmpty()){this.checkFehlers.add("Zeite 3 Zip und City  Feld leer");}
             if (aapAdministrationsEMail.isEmpty()){this.checkFehlers.add("Zeite 3 Email Feld leer");}
         }else{
-            if (ValidationTools.isNumeric(aapOneGroupID)){this.checkFehlers.add("Zeite 3 GroupID Feld leer");}
-            if (ValidationTools.isNumeric(aapOneGroupPhoneNumber)){this.checkFehlers.add("Zeite 3 AA Plus PhoneNumber Feld leer");}
+            if (!(ValidationTools.isNumeric(aapOneGroupID))){this.checkFehlers.add("Zeite 3 GroupID Fehler");}
+            if (!(ValidationTools.isNumeric(aapOneGroupPhoneNumber))){this.checkFehlers.add("Zeite 3 AA Plus PhoneNumber Fehler");}
             if (!(aapAdministrationsFitma.isEmpty())||!(aapAdministrationsNameAndSurname.isEmpty())||!(aapAdministrationsStreetAndHouse.isEmpty())||!(aapAdministrationsZipAndCity.isEmpty())||!(aapAdministrationsEMail.isEmpty())){
                 if (aapAdministrationsFitma.isEmpty()){this.checkFehlers.add("Zeite 3 Firma Feld leer");}
                 if (aapAdministrationsNameAndSurname.isEmpty()){this.checkFehlers.add("Zeite 3 Vorname und Name Feld leer");}

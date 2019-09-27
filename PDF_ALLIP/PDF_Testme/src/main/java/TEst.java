@@ -42,9 +42,9 @@ public class TEst {
 
         System.out.println(isNumeric(""));
         System.out.println(isNumeric("#"));
-        System.out.println(isNumeric("8"));
-        System.out.println(isNumeric("8s"));
-        System.out.println((isNumeric("&%7")));
+        System.out.println(isNumeric("8w"));
+        System.out.println(isNumeric("87ff"));
+        System.out.println((isNumeric("&W")));
         System.out.println(!containsDigit("$%/&%/&%8"));
 
 
