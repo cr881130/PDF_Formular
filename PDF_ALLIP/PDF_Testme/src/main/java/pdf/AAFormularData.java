@@ -58,7 +58,7 @@ public class AAFormularData extends FormularData implements PDFConstants
     private boolean int1Flat;
     private boolean int2Flat;
     private boolean int3Flat;
-    private int countOfLines;
+    private String countOfLines;
     private String downloadSpeed;
     private boolean central;
     private boolean irregular;
@@ -747,11 +747,11 @@ public class AAFormularData extends FormularData implements PDFConstants
         this.vtcEMail = vtcEMail;
     }
     
-    public int getCountOfLines() {
+    public String getCountOfLines() {
         return this.countOfLines;
     }
     
-    public void setCountOfLines(final int countOfLines) {
+    public void setCountOfLines(final String countOfLines) {
         this.countOfLines = countOfLines;
     }
     
@@ -1766,7 +1766,7 @@ public class AAFormularData extends FormularData implements PDFConstants
             }
         }
         //Sprachkanäle
-        if (this.countOfLines==0 ) {
+        if (this.countOfLines=="Keine" ) {
             this.checkFehlers.add("Kein ausgewählter Sprachkanal");
             result = false;
         }
@@ -2396,7 +2396,7 @@ public class AAFormularData extends FormularData implements PDFConstants
         aadf.setInt1Flat(true);
         aadf.setInt2Flat(true);
         aadf.setInt3Flat(true);
-        aadf.setCountOfLines(2);
+        //aadf.setCountOfLines("");
         aadf.setDownloadSpeed("downloadSpeed");
         aadf.setCentral(true);
         aadf.setIrregular(true);
