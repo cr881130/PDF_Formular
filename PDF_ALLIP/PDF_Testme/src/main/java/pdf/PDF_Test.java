@@ -598,11 +598,12 @@ public class PDF_Test {
         kfd.setClassicPlus(getBooleanFromField(p.getProperty("2171.36")));
         kfd.setFitter(getBooleanFromField(p.getProperty("2171.37")));
         kfd.setAdditionalSevice(p.getProperty("2171.38"));
-        kfd.setAction(p.getProperty("2171.40"));
+        kfd.setAction(p.getProperty("2171.39"));
         int durration = 24;
-        final String durrationnBox = p.getProperty("2171.41");
+        final String durrationnBox = p.getProperty("2171.40");
         Label_1548: {
             if (durrationnBox != null) {
+
                 final String s4;
                 switch (s4 = durrationnBox) {
                     case "1": {
@@ -622,15 +623,18 @@ public class PDF_Test {
                         break Label_1548;
                     }
                     default:
+                        durration = 24;
                         break;
                 }
-                durration = 24;
+
             }
         }
+
+
         kfd.setDurration(durration);
-        if (p.getProperty("2171.42") != null) {
+        if (p.getProperty("2171.41") != null) {
             try {
-                kfd.setPreferredDate(PDFExctractor.sdf.parse(p.getProperty("2171.42")));
+                kfd.setPreferredDate(PDFExctractor.sdf.parse(p.getProperty("2171.41")));
             }
             catch (ParseException ex2) {}
         }
