@@ -115,6 +115,11 @@ public class PDFExctractor implements PDFConstants
                             kfd = v201903AAP(acroForm);
                             kfd.check();
                         }
+                        if (text.contains("FOR 60002171 / 0919")) {
+                            knownFormular = true;
+                            kfd = v201909KAC2KAP(acroForm);
+                            kfd.check();
+                        }
                         if (!knownFormular) {
                             fehlers.add("Unknown Type");
                         }
@@ -428,7 +433,7 @@ public class PDFExctractor implements PDFConstants
         kfd.setAapAdministrationsEMail(p.getProperty("2043.14"));
         return kfd;
     }
-    
+
     private static String calcGender(final Properties p, final String key) {
         String gender = null;
         if (p.getProperty(key) != null) {
@@ -440,6 +445,202 @@ public class PDFExctractor implements PDFConstants
             }
         }
         return gender;
+    }
+
+    private static KAFormularData v201909KAC2KAP(final PDAcroForm acroForm){
+        final String[] namen = { "DATUM", "RECHNUNGSKONTONUMMER", "KUNDENNUMMERFESTNETZ", "KUNDENNAME", "VO-MAIL", "FESTNETZVO", "VO-TEL", "2171", "2171.1", "2171.2", "2171.3", "2171.4", "2171.5", "2171.6", "2171.7", "2171.8", "2171.9", "2171.10", "2171.11", "2171.12", "2171.13", "2171.14", "2171.15", "2171.16", "2171.17", "2171.18", "2171.19", "2171.20", "2171.21", "2171.22", "2171.23", "2171.24", "2171.25", "2171.26", "2171.27", "2171.28", "2171.31", "2171.32", "2171.34", "2171.35", "2171.36", "2171.37", "2171.38", "2171.39", "2171.40", "2171.41", "2171.42" };
+        final Properties p = new Properties();
+        readFields(p, acroForm, namen);
+        final KAFormularData kfd = new KAFormularData();
+        kfd.setVoEMail(p.getProperty("VO-MAIL"));
+        kfd.setVoNummer(p.getProperty("FESTNETZVO"));
+        kfd.setVoTelNr(p.getProperty("VO-TEL"));
+        kfd.setCustomerName(p.getProperty("KUNDENNAME"));
+        try {
+            kfd.setOrderDate(PDFExctractor.sdf.parse(p.getProperty("DATUM")));
+        }
+        catch (Exception ex) {}
+
+        String KundeNumber = null;
+        KundeNumber=p.getProperty("KUNDENNUMMERFESTNETZ");
+        if (KundeNumber.length()<3){
+            kfd.setCustomerNumber("Keine");
+            //kfd.getFehlers().add("Kundennummer leer");
+        }else if (KundeNumber!=null){
+            kfd.setCustomerNumber(KundeNumber);
+        }//Added
+
+        kfd.setAccount(p.getProperty("RECHNUNGSKONTONUMMER"));
+        kfd.setName(p.getProperty("2171.1"));
+        kfd.setSurname(p.getProperty("2171.2"));
+        kfd.setStreet(p.getProperty("2171.3"));
+        kfd.setHouseNumber(p.getProperty("2171.4"));
+        kfd.setZipCode(p.getProperty("2171.5"));
+        //boolean ZipCodebool;
+        //ZipCodebool= ValidationTools.isNumeric(kfd.getZipCode());
+
+        kfd.setCity(p.getProperty("2171.6"));
+        String gender = null;
+        if (p.getProperty("2171.7") != null) {
+            if ("1".equals(p.getProperty("2171.7"))) {
+                gender = "Frau";
+            }
+            if ("2".equals(p.getProperty("2171.7"))) {
+                gender = "Herr";
+            }
+        }
+        kfd.setTcGender(gender);
+        kfd.setTcName(p.getProperty("2171.8"));
+        kfd.setTcSurname(p.getProperty("2171.9"));
+        kfd.setTcPhone(p.getProperty("2171.10"));
+        kfd.setTcMobile(p.getProperty("2171.11"));
+        kfd.setTcFax(p.getProperty("2171.12"));
+        kfd.setTcEMail(p.getProperty("2171.13"));
+        kfd.setLocName(p.getProperty("2171.14"));
+        kfd.setLocSurname(p.getProperty("2171.15"));
+        kfd.setLocStreet(p.getProperty("2171.16"));
+        kfd.setLocHouseNumber(p.getProperty("2171.17"));
+        kfd.setLocZipCode(p.getProperty("2171.18"));
+        kfd.setLocCity(p.getProperty("2171.19"));
+        kfd.setPrefix(p.getProperty("2171.20"));
+        kfd.setNumber(p.getProperty("2171.21"));
+        kfd.setOldRate(getBooleanFromField(p.getProperty("2171.22")));
+        String tarifID = null;
+        final String tarif = p.getProperty("2171.23");
+        if (tarif != null) {
+            final String s;
+            switch (s = tarif) {
+                case "1": {
+                    tarifID = "Phone XXL";
+                    break;
+                }
+                case "2": {
+                    tarifID = "Phone XL";
+                    break;
+                }
+                case "3": {
+                    tarifID = "Phone L";
+                    break;
+                }
+                case "4": {
+                    tarifID = "Phone M";
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+        kfd.setRate(tarifID);
+        kfd.setFixNetFlat(getBooleanFromField(p.getProperty("2171.24")));
+        kfd.setMobileFlat(getBooleanFromField(p.getProperty("2171.25")));
+        kfd.setInt1Flat(getBooleanFromField(p.getProperty("2171.26")));
+        kfd.setInt2Flat(getBooleanFromField(p.getProperty("2171.27")));
+        kfd.setInt3Flat(getBooleanFromField(p.getProperty("2171.28")));
+        final String talDSL = p.getProperty("2171.30");
+        String talDSLId = null;
+        boolean tal = false;
+        if (talDSL != null) {
+            tal=true;
+            final String s2;
+            switch (s2 = talDSL) {
+                case "1": {
+                    talDSLId = "TAL 16";
+                    break;
+                }
+                case "2": {
+                    talDSLId = "TAL 50";
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+        final String regioDSL = p.getProperty("2171.31");
+        String regioDSLID = null;
+        boolean regio = false;
+        if (regioDSL != null) {
+            regio = true;
+            final String s3;
+            switch (s3 = regioDSL) {
+                case "1": {
+                    regioDSLID = "BSA 16";
+                    break;
+                }
+                case "2": {
+                    regioDSLID = "BSA 50";
+                    break;
+                }
+                case "3": {
+                    regioDSLID = "BSA 100";
+                    break;
+                }
+                case "4": {
+                    regioDSLID = "BSA 250";
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+        if (talDSLId == null && regioDSLID == null) {
+            kfd.setDownloadSpeed("kein");
+            kfd.getFehlers().add("Bandbreite ist leer");
+        }
+        else if (talDSLId != null && regioDSLID != null) {
+            kfd.getFehlers().add("TAL & BSA sind ausgew\u00e4hlt");
+            kfd.setDownloadSpeed("kein");
+        }
+        else if (talDSLId == null && regioDSLID != null) {
+            kfd.setDownloadSpeed(regioDSLID);
+        }
+        else if(talDSLId != null && regioDSLID == null) {//Added
+            kfd.setDownloadSpeed(talDSLId);
+        }
+
+        kfd.setStaticIP(getBooleanFromField(p.getProperty("2171.32")));
+        kfd.setClir(getBooleanFromField(p.getProperty("2171.33")));
+        kfd.setLock900(getBooleanFromField(p.getProperty("2171.34")));
+        kfd.setLockForeign(getBooleanFromField(p.getProperty("2171.35")));
+        kfd.setClassicPlus(getBooleanFromField(p.getProperty("2171.36")));
+        kfd.setFitter(getBooleanFromField(p.getProperty("2171.37")));
+        kfd.setAdditionalSevice(p.getProperty("2171.38"));
+        kfd.setAction(p.getProperty("2171.40"));
+        int durration = 24;
+        final String durrationnBox = p.getProperty("2171.41");
+        Label_1548: {
+            if (durrationnBox != null) {
+                final String s4;
+                switch (s4 = durrationnBox) {
+                    case "1": {
+                        durration = 36;
+                        break Label_1548;
+                    }
+                    case "2": {
+                        durration = 48;
+                        break Label_1548;
+                    }
+                    case "3": {
+                        durration = 60;
+                        break Label_1548;
+                    }
+                    case "Off": {
+                        durration = 24;
+                        break Label_1548;
+                    }
+                    default:
+                        break;
+                }
+                durration = 24;
+            }
+        }
+        kfd.setDurration(durration);
+        if (p.getProperty("2171.42") != null) {
+            try {
+                kfd.setPreferredDate(PDFExctractor.sdf.parse(p.getProperty("2171.42")));
+            }
+            catch (ParseException ex2) {}
+        }
+        return kfd;
     }
     
     private static KAFormularData v201902KAC2KAP(final PDAcroForm acroForm) {
@@ -530,7 +731,7 @@ public class PDFExctractor implements PDFConstants
         kfd.setMobileFlat(getBooleanFromField(p.getProperty("2171.25")));
         kfd.setInt1Flat(getBooleanFromField(p.getProperty("2171.26")));
         kfd.setInt2Flat(getBooleanFromField(p.getProperty("2171.27")));
-        kfd.setInt2Flat(getBooleanFromField(p.getProperty("2171.28")));
+        kfd.setInt3Flat(getBooleanFromField(p.getProperty("2171.28")));
         final String talDSL = p.getProperty("2171.30");
         String talDSLId = null;
         boolean tal = false;

@@ -20,7 +20,7 @@ import java.io.IOException;
 public class PDFTest
 {
     public static void main(final String[] args) throws Exception, IOException {
-        if (readFile(args[0])) {
+        if (readFile("C:\\Users\\cristian.quintero\\Documents\\MIG3_2171_0919_BK_PW_KA_Classic-ISDN_zu_KA_Plus_PlusRegio_000.pdf")) {
             System.exit(0);
         }
         else {
@@ -30,7 +30,7 @@ public class PDFTest
     
     private static boolean readFile(final String path) throws InvalidPasswordException, IOException {
         boolean result = true;
-        final String[] names = { "DATUM", "RECHNUNGSKONTONUMMER", "KUNDENNUMMERFESTNETZ", "KUNDENNAME", "2171", "2171.1", "2171.2", "2171.3", "2171.4", "2171.5", "2171.6", "2171.7", "2171.8", "2171.9", "2171.10", "2171.11", "2171.12", "2171.13", "2171.14", "2171.15", "2171.16", "2171.17", "2171.18", "2171.19", "2171.20", "2171.21", "2171.22", "2171.23", "2171.24", "2171.25", "2171.26", "2171.27", "2171.28", "2171.29", "2171.30", "2171.31", "2171.32", "2171.33", "2171.34", "2171.35", "2171.36", "2171.37", "2171.38", "2171.39", "2171.40", "2171.41", "VO-MAIL", "FESTNETZVO", "VO-TEL" };
+        final String[] names = { "DATUM", "RECHNUNGSKONTONUMMER", "KUNDENNUMMERFESTNETZ", "KUNDENNAME", "VO-MAIL", "FESTNETZVO", "VO-TEL", "2171", "2171.1", "2171.2", "2171.3", "2171.4", "2171.5", "2171.6", "2171.7", "2171.8", "2171.9", "2171.10", "2171.11", "2171.12", "2171.13", "2171.14", "2171.15", "2171.16", "2171.17", "2171.18", "2171.19", "2171.20", "2171.21", "2171.22", "2171.23", "2171.24", "2171.25", "2171.26", "2171.27", "2171.28", "2171.30", "2171.31", "2171.32", "2171.33", "2171.34", "2171.35", "2171.36", "2171.37", "2171.38", "2171.39", "2171.40", "2171.41"};
         final StringBuffer sb = new StringBuffer();
         final File sourceFile = new File(path);
         final PDDocument document = PDDocument.load(sourceFile);
