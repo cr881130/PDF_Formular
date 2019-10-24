@@ -532,9 +532,11 @@ public class PDF_Test {
         kfd.setInt3Flat(getBooleanFromField(p.getProperty("2171.28")));
         final String talDSL = p.getProperty("2171.30");
         String talDSLId = null;
-        boolean tal = false;
-        if (talDSL != null) {
-            tal=true;
+
+        if (talDSL =="3" ) {
+            talDSLId = "Voice Only";
+        }
+            /*
             final String s2;
             switch (s2 = talDSL) {
                 case "1": {
@@ -549,13 +551,19 @@ public class PDF_Test {
                     break;
             }
         }
+        */
+
         final String regioDSL = p.getProperty("2171.31");
         String regioDSLID = null;
-        boolean regio = false;
+
         if (regioDSL != null) {
-            regio = true;
+
             final String s3;
             switch (s3 = regioDSL) {
+                case "VO": {
+                    regioDSLID = "Voice Only";
+                    break;
+                }
                 case "1": {
                     regioDSLID = "BSA 16";
                     break;
@@ -590,6 +598,7 @@ public class PDF_Test {
         else if(talDSLId != null && regioDSLID == null) {//Added
             kfd.setDownloadSpeed(talDSLId);
         }
+
 
         kfd.setStaticIP(getBooleanFromField(p.getProperty("2171.32")));
         kfd.setClir(getBooleanFromField(p.getProperty("2171.33")));
