@@ -1591,7 +1591,7 @@ public class AAFormularData extends FormularData implements PDFConstants
         boolean result = true;
         this.checkFehlers.clear();
 
-        Date datepast = new Date(2015, 01, 01);
+        Date datepast = new Date(99, 01, 01);
         if (this.orderDate == null) {
             this.checkFehlers.add("Auftragsdatum leer");
             result = false;
@@ -1599,7 +1599,7 @@ public class AAFormularData extends FormularData implements PDFConstants
             this.checkFehlers.add("Auftragsdatum in Zukunft");
             result = false;
         }else if (this.orderDate.before(datepast)) {
-            this.checkFehlers.add("Auftragsdatum in Vergangeneit");
+            this.checkFehlers.add("Auftragsdatum in Vergangeheit");
             result = false;
         }
 

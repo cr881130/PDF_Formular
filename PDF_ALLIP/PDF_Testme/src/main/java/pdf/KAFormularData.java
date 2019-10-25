@@ -582,8 +582,7 @@ public class KAFormularData extends FormularData implements PDFConstants
     public boolean check() {
         boolean result = true;
         this.checkFehlers.clear();
-        Date datepast = new Date(2017, 01, 01);
-        datepast.setYear(99);
+        Date datepast = new Date(99, 01, 01);
         //System.out.println("Fecha pasada: "+datepast);
         //System.out.println("Fecha formulario: "+this.orderDate);
         if (this.orderDate == null) {
@@ -593,7 +592,7 @@ public class KAFormularData extends FormularData implements PDFConstants
             this.checkFehlers.add("Auftragsdatum in Zukunft");
             result = false;
         }else if (this.orderDate.before(datepast)) {
-            this.checkFehlers.add("Auftragsdatum in Vergangeneit");
+            this.checkFehlers.add("Auftragsdatum in Vergangeheit");
             result = false;
         }
 
