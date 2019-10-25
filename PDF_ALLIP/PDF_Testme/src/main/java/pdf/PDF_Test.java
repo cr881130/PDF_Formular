@@ -23,7 +23,7 @@ public class PDF_Test {
     public static void main(final String[] args) {
         boolean readFile = false;
         try {
-            readFile = readFile("C:\\Users\\cristian.quintero\\Documents\\MIG3_2171_0919_BK_PW_KA_Classic-ISDN_zu_KA_Plus_PlusRegio_000.pdf");
+            readFile = readFile("C:\\Users\\cristian.quintero\\Documents\\MIG2_2171_0219_BK_PW_KA_Classic-ISDN_zu_KA_Plus_PlusRegio_000.pdf");
 
         }
         catch (IOException e) {
@@ -156,7 +156,7 @@ public class PDF_Test {
         try {
             kfd.setOrderDate(PDFExctractor.sdf.parse(p.getProperty("DATUM")));
         }
-        catch (Exception ex) {}
+        catch (Exception ex) {kfd.setOrderDate(null);}
 
         //kfd.setCustomerNumber(p.getProperty("KUNDENNUMMERFESTNETZ"));
         String KundeNumber = null;
@@ -453,7 +453,9 @@ public class PDF_Test {
         try {
             kfd.setOrderDate(PDFExctractor.sdf.parse(p.getProperty("DATUM")));
         }
-        catch (Exception ex) {}
+        catch (Exception ex) {kfd.setOrderDate(null);
+            //kfd.getFehlers().add("Auftragsdatum leer");
+            }///
 
         String KundeNumber = null;
         KundeNumber=p.getProperty("KUNDENNUMMERFESTNETZ");
@@ -662,7 +664,7 @@ public class PDF_Test {
         try {
             kfd.setOrderDate(PDFExctractor.sdf.parse(p.getProperty("DATUM")));
         }
-        catch (Exception ex) {}
+        catch (Exception ex) {kfd.setOrderDate(null);}
 
         String KundeNumber = null;
         KundeNumber=p.getProperty("KUNDENNUMMERFESTNETZ");
@@ -807,9 +809,9 @@ public class PDF_Test {
         kfd.setClassicPlus(getBooleanFromField(p.getProperty("2171.36")));
         kfd.setFitter(getBooleanFromField(p.getProperty("2171.37")));
         kfd.setAdditionalSevice(p.getProperty("2171.38"));
-        kfd.setAction(p.getProperty("2171.40"));
+        kfd.setAction(p.getProperty("2171.39"));
         int durration = 24;
-        final String durrationnBox = p.getProperty("2171.41");
+        final String durrationnBox = p.getProperty("2171.40");
         Label_1548: {
             if (durrationnBox != null) {
                 final String s4;
@@ -837,9 +839,9 @@ public class PDF_Test {
             }
         }
         kfd.setDurration(durration);
-        if (p.getProperty("2171.42") != null) {
+        if (p.getProperty("2171.41") != null) {
             try {
-                kfd.setPreferredDate(PDFExctractor.sdf.parse(p.getProperty("2171.42")));
+                kfd.setPreferredDate(PDFExctractor.sdf.parse(p.getProperty("2171.41")));
             }
             catch (ParseException ex2) {}
         }
@@ -858,7 +860,7 @@ public class PDF_Test {
         try {
             kfd.setOrderDate(PDFExctractor.sdf.parse(p.getProperty("DATUM")));
         }
-        catch (Exception ex) {}
+        catch (Exception ex) {kfd.setOrderDate(null);}
 
         //kfd.setCustomerNumber(p.getProperty("KUNDENNUMMERFESTNETZ"));
         String KundeNumber = null;
@@ -1063,7 +1065,7 @@ public class PDF_Test {
         try {
             kfd.setOrderDate(PDFExctractor.sdf.parse(p.getProperty("DATUM")));
         }
-        catch (Exception ex) {}
+        catch (Exception ex) {kfd.setOrderDate(null);}
         kfd.setCustomerNumber(p.getProperty("KUNDENNUMMERFESTNETZ"));
         kfd.setAccount(p.getProperty("RECHNUNGSKONTONUMMER"));
         kfd.setName(p.getProperty("2171.1"));

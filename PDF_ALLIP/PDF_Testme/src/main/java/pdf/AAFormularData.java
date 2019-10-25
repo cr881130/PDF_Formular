@@ -1590,14 +1590,19 @@ public class AAFormularData extends FormularData implements PDFConstants
     public boolean check() {
         boolean result = true;
         this.checkFehlers.clear();
+
+        Date datepast = new Date(2015, 01, 01);
         if (this.orderDate == null) {
             this.checkFehlers.add("Auftragsdatum leer");
             result = false;
-        }
-        if (this.orderDate.after(new Date())) {
+        }else if (this.orderDate.after(new Date())) {
             this.checkFehlers.add("Auftragsdatum in Zukunft");
             result = false;
+        }else if (this.orderDate.before(datepast)) {
+            this.checkFehlers.add("Auftragsdatum in Vergangeneit");
+            result = false;
         }
+
         if (this.customerName == null || this.customerName.length() == 0) {
             this.checkFehlers.add("Kundenname leer");
             result = false;
